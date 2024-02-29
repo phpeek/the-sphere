@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: Monospace;
+  font-size: 13px;
+  line-height: 24px;
+  overscroll-behavior: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #ff0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+#info {
+  position: absolute;
+  bottom: 30px;
+  right: 22 px;
+  width: 32px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  z-index: 1; /* TODO Solve this in HTML */
+}
+
+a,
+button,
+input,
+select {
+  pointer-events: auto;
+}
+
+.lil-gui {
+  z-index: 2 !important; /* TODO Solve this in HTML */
+}
+
+@media all and (max-width: 640px) {
+  .lil-gui.root {
+    top: auto;
+    max-height: 50%;
+    max-width: 80%;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+#overlay {
+  position: absolute;
+  font-size: 16px;
+  z-index: 2;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#overlay button {
+  background: transparent;
+  border: 0;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 12px 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#notSupported {
+  width: 50%;
+  margin: auto;
+  background-color: #f00;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.textarea {
+  border: none;
+  focus: none;
+}
+
+.gradient-text {
+  /* Fallback: Set a background color. */
+  background-color: red;
+
+  /* Create the gradient. */
+  background-image: linear-gradient(45deg, #a8ffa8, hsl(353, 100%, 65%));
+
+  /* Set the background size and repeat properties. */
+  background-size: 40%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+.coke {
+  position: absolute;
+  top: 60px;
+  left: 80px;
+}
+
+.output_canvas {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+}
+
+.optionbox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.optionbox select {
+  background: #e91e63;
+  color: #fff;
+  padding: 10px;
+  width: 250px;
+  height: 50px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 48px rgb(93, 15, 9);
+  -webkit-appearance: button;
+  outline: none;
+}
+
+.optionbox:before {
+  content: "\f358";
+  font-family: "Font Awesome 5 free";
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  height: 50px;
+  width: 50px;
+  background: #e91e63;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  font-size: 30px;
+  pointer-events: none;
+}
+
+.optionbox:hover:before {
+  background: #c72059;
+}

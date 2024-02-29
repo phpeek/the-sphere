@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, initial-scale=1.0" />
+    <title>The Sphere</title>
+  </head>
+  <body>
+    <div
+      style="
+        width: 10vw;
+        position: fixed;
+        left: 10px;
+        bottom: 20;
+        border: none;
+        font-size: 20px;
+        color: #afffac;
+        outline: none;
+        
+      "
+    >
+      <select id="dropdown" style="
+      width: 10vw;
+      position: fixed;
+      left: 10px;
+      bottom: 20;
+      border: none;
+      font-size: 10px;
+      color: #afffac;
+      outline: none;
+      background-color: #00000000;
+      
+    ">
+        <option value='1'>example 1</option>
+        <option value='2'>example 2</option>
+        <option value='3'>example 3</option>
+        <option value='4'>example 4</option>
+        <option value='5'>example 5</option>
+      </select>
+    </div>
+
+    <textarea
+      id="glslCode"
+      rows="38"
+      cols="150"
+      style="
+        width: 100vw;
+        position: fixed;
+        left: 10px;
+        bottom: 0;
+        border: none;
+        font-size: 10px;
+        color: #afffac;
+        outline: none;
+        background-color: #00000000;
+      "
+      spellcheck="false"
+    >
+uniform float time;
+varying vec2 vUv;
+varying vec3 vNormal;
+
+void main(){
+
+  gl_FragColor = vec4(0.5 + 0.5 * cos(time + vUv.xyx + vec3(0., 2., 4.)), 1.);
+
+}
+    </textarea>
+    <!-- <script type="text/javascript">
+      function presetShader() {
+        var optionValue = document.getElementById("dropdown").value;
+        //document.getElementById("output").innerHTML = optionValue;
+        document.getElementById("output").innerHTML = optionValue;
+      }
+    </script> -->
+
+    <video id="video" loop crossorigin="anonymous" hidden muted playsinline>
+      <source src="/stabilized_sphere.mp4" type="video/mp4;" />
+    </video>
+
+    <div id="container"></div>
+
+    <script id="vertexShader" type="x-shader/x-vertex">
+
+      varying vec2 vUv;
+      varying vec3 vNormal;
+
+      void main()	{
+        vUv = uv;
+        vNormal = normal;
+      	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+      }
+    </script>
+
+    <script id="fragmentShader" type="x-shader/x-fragment">
+
+      uniform float time;
+      varying vec2 vUv;
+      varying vec3 vNormal;
+
+      void main()	{
+
+        // if (vUv.y < 0.4) discard;
+
+      	gl_FragColor = vec4(vNormal.x, 0.,0.,1.); // vec4(vUv.y, sin(time),0.,0.5);
+
+        if (vUv.y + vUv.x / 10. < 0.42 )
+          discard;
+      }
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
